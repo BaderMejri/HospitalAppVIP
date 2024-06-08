@@ -39,6 +39,11 @@ Layout:decorate="TemplateHospital"
                             Supprimer
                         </a>
                     </td>
+                    <td>
+                        <a class="btn btn-success" th:href="@{/editPatients(id=${patient.id}, Keyword=${Keyword}, page=${currentPage})}">
+                            Modifier
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
