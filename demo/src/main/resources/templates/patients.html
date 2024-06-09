@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 Layout:decorate="TemplateHospital"
 >
 <head>
@@ -34,12 +36,12 @@ Layout:decorate="TemplateHospital"
                     <td th:text="${patient.dateNaissance}"></td>
                     <td th:text="${patient.isSick}"></td>
                     <td th:text="${patient.score}"></td>
-                    <td>
+                    <td sec:authorize="hasRole('ADMIN')">
                         <a onclick="return confirm('Confirmez vous la suppression de lélément sélectionné?')" class="btn btn-danger" th:href="@{delete(id=${patient.id}, Keyword=${Keyword}, page=${currentPage})}">
                             Supprimer
                         </a>
                     </td>
-                    <td>
+                    <td sec:authorize="hasRole('ADMIN')">
                         <a class="btn btn-success" th:href="@{/editPatients(id=${patient.id}, Keyword=${Keyword}, page=${currentPage})}">
                             Modifier
                         </a>
