@@ -9,10 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -38,7 +35,7 @@ public class PatientController {
        return "patients";
     }
 
-    @GetMapping("/admin/delete")
+    @DeleteMapping("/admin/delete")
     public String delete(Long id, String Keyword, int page){
         patientRepository.deleteById(id);
         return "redirect:/user/index?page="+page+"&Keyword="+Keyword;
@@ -67,7 +64,7 @@ public class PatientController {
         patientRepository.save(patient);
         return "redirect:/user/index?page="+page+"&Keyword="+Keyword;
     }
-    @GetMapping("/admin/editPatients")
+    @PostMapping("/admin/editPatients")
     public String editPatients(Model model, Long id, String Keyword, int page){
         Patient patient = patientRepository.findById(id).orElse(null);
         if(patient==null) throw new RuntimeException("Patient Introuvable");
